@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris
+  labels:
+    app: tetris
+    kubernetes.azure.com/generator: devhub
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tetris
+  template:
+    metadata:
+      labels:
+        app: tetris
+    spec:
+      containers:
+        - name: tetris
+          image: containernik.azurecr.io/tetris:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
